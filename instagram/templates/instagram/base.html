@@ -1,4 +1,4 @@
-{%bootstrap4%} {% load static%}
+{% load bootstrap4 %} {% load static%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,6 +23,8 @@
     <div class="max-w-6xl mx-auto">
       {%include "instagram/navbar.html"%} {%block content%} {%endblock content%}
     </div>
-    {%include "instagram/scripts.html"%}
+    {%include "instagram/scripts.html"%} {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}
   </body>
 </html>
