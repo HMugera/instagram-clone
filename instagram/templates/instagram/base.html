@@ -13,14 +13,17 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:ital@0;1&display=swap"
       rel="stylesheet"
     />
+    {% block styles %} {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    {% endblock %}
+
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
     />
   </head>
   <body>
-    <div class="max-w-6xl mx-auto">
+    <div class="container-fluid p-0 m-0">
       {%include "instagram/navbar.html"%} {%block content%} {%endblock content%}
     </div>
     {%include "instagram/scripts.html"%} {% block scripts %}
