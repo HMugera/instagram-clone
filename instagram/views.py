@@ -25,10 +25,13 @@ class SignupView(generic.CreateView):
     
 
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def home_page(request):
+    current_user = request.user
     posts = Post.objects.all()
     ctx = {'posts':posts}
+   
+    
     
     return render(request,'instagram/home_page.html',ctx)
 
@@ -98,7 +101,17 @@ def like_post(request,post_id):
 
 def profile(request,username):
     user = User.objects.get(username=username)
-    profile = Profile.filter_profile_by_id(user.id)
+
+    try:
+        profile=Profile.filter_profile_by_id(user.id)
+        print(profile)
+
+    except Profile.DoesNotExist:
+        Profile.objects.create(
+            user=user
+        )
+        profile=Profile.filter_profile_by_id(user.id)
+        print(profile)
 
     ctx = {
         "profile":profile,
