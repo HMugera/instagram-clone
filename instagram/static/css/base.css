@@ -93,6 +93,10 @@ nav {
   padding: 5px;
   border-radius: 10px;
 }
+.comment_wrapper {
+  display: flex;
+  align-items: center;
+}
 
 .comments-form {
   margin: auto;

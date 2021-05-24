@@ -20,6 +20,7 @@ class SignupView(generic.CreateView):
     form_class = SignUpForm
 
     def get_success_url(self):
+       
         return reverse("login")
     
 
@@ -74,6 +75,24 @@ def add_comment(request,post_id):
         )
     return redirect('instagram:view_post' ,pk=post_id)
 
+
+def like_post(request,post_id):
+    post = Post.objects.get(pk=post_id)
+    is_liked=False
+    user=request.user.profile
+    try:
+        profile=Profile.objects.get(user=user.user)
+        print(profile)
+
+    except Profile.DoesNotExist:
+        raise Http404()
+    if post.likes.filter(id=user.user.id).exists():
+        post.likes.remove(user.user)
+        is_liked=False
+    else:
+        post.likes.add(user.user)
+        is_liked=True
+    return HttpResponseRedirect(reverse('home'))
 
 
 

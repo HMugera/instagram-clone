@@ -76,7 +76,7 @@ class Comments(models.Model):
     
     @classmethod
     def filter_comments_by_post_id(cls, id):
-        comments = Comments.objects.get(post__id=id)
+        comments = Comments.objects.filter(post__id=id)
         return comments
     
 
