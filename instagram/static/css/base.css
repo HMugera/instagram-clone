@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 * {
@@ -37,8 +38,7 @@ nav {
 }
 
 .post-container .card {
-  /* background-color: rgb(104, 218, 24); */
-  width: 80%;
+  width: 75%;
 }
 .icons-container {
   display: flex;
@@ -54,7 +54,55 @@ nav {
 }
 
 .followers-container {
-  background-color: rgb(16, 177, 189);
+  padding: 20px;
+}
+.followers-wrapper {
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  width: 450px;
+  margin: 25px auto;
+  min-height: 500px;
+  padding: 20px;
+
+  border-radius: 10px;
+}
+
+.user-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin: auto;
+  border-bottom: 1px solid black;
+}
+.user-header .image {
+  border: 2px solid black;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.user-header .image img {
+  height: 40px;
+  margin: 10px;
+}
+
+.users-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 10px auto;
+  padding: 20px;
+}
+.single-user-container {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
 }
 
 /* single_post-container */
@@ -117,20 +165,38 @@ nav {
   border-radius: 10px;
 }
 .user_profile {
-  width: 40%;
+  width: 100%;
   padding: 5px;
-  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+
   display: flex;
-  flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  margin: 10px auto;
+  margin: 10px 10px 10px 90px;
+  padding-left: 90px;
+}
+
+.user_profile .details {
+  padding: 5px 20px 5px 90px;
 }
 .profile-picture {
   height: 200px;
   width: 200px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.user_profile .details .first {
+  display: flex;
+}
+
+.user_profile .details .first h3 {
+  margin-right: 100px;
+}
+
+.user_profile .details .third {
+  display: flex;
+  font-size: 20px;
+}
+.user_profile .details .third span {
+  font-weight: 600;
 }

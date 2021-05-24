@@ -18,7 +18,7 @@
         <div class="card-body">
           <div class="icons-container">
             <div class="like mr-3">
-              <a href="">
+              <a href="{%url 'instagram:like_post' post.id %}">
                 <img src="../../static/images/heart.png" alt="" />
               </a>
             </div>
@@ -28,18 +28,52 @@
               </a>
             </div>
           </div>
-          <h4>{{post.likes.count}}likes</h4>
+          <h5>{{post.likes.count}} likes</h5>
           <div class="card-text">
             <span class="username"> {{post.user.username}} </span>
             <span class="caption">{{post.caption}}</span>
           </div>
-          <h4>View all comments</h4>
+          <h5>
+            <a href="{%url 'instagram:view_post' post.id %}">
+              View all comments
+            </a>
+          </h5>
         </div>
       </div>
 
       {% endfor %}
     </div>
-    <div class="col-md-5 followers-container">followers</div>
+    <div class="col-md-5 followers-container">
+      <div class="followers-wrapper">
+        <div class="user-header">
+          <div class="image">
+            <img src="../../../media/pictures/user.png" alt="" />
+            <!-- <img src="{{user.profile.image.url}}}" alt="" /> -->
+          </div>
+          <div class="user_name ml-2">@{{user.username}}</div>
+        </div>
+        <p class="text-muted text-center mt-2 mb-2">Suggestions to follow</p>
+        <div class="users-wrapper">
+          {% for user in users %}
+
+          <div class="single-user-container">
+            <div class="">{{user.username}}</div>
+            <div>
+              <a
+                href="{%url 'instagram:follow' user.id %}"
+                class="btn btn-success"
+                >Follow</a
+              >
+            </div>
+
+            <div>
+              <a href="{%url 'instagram:follow' user.id %}" class="btn btn-danger">Unfollow</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
