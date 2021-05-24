@@ -10,6 +10,8 @@ from .models import Post, Comment, Profile, Follow
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from django.views import generic 
+from cloudinary.forms import cl_init_js_callbacks
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -22,21 +24,14 @@ class SignupView(generic.CreateView):
     
 
 
+# @login_required(login_url='/accounts/login/')
+def home_page(request):
+    posts = Post.objects.all()
+    ctx = {'posts':posts}
+    
+    return render(request,'instagram/home_page.html',ctx)
 
-# class HomeView(generic.TemplateView):
-#     template_name = 'instagram/home_page.html'
-
-class HomeView(generic.ListView):
-    template_name = 'instagram/home_page.html'
-    queryset = Post.objects.all()
-    context_object_name = "posts"
-
-# class UploadPictureView(generic.CreateView):
-#     template_name = 'instagram/upload_picture.html'
-#     form_class = UploadImageModelForm
-
-#     def get_success_url(self):
-#         return reverse("instagram:home")
+# @login_required(login_url='/accounts/login/')
 def upload_picture(request):
     current_user = request.user
     if request.method == 'POST':
@@ -49,5 +44,12 @@ def upload_picture(request):
     else:
         form = UploadImageModelForm()
     return render(request,'instagram/upload_picture.html',{'form':form})
+
+def view_post(request,pk):
+    post = Post.objects.get(id=pk)
+    ctx = {'post':post}
+    
+    return render(request,'instagram/view_post.html',ctx)
+    
     
     

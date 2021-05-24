@@ -58,6 +58,7 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
+        
         return f'{self.user.name} Post'
 
     class Meta:

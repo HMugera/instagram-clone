@@ -7,17 +7,16 @@
 nav {
   width: 100%;
 }
-.instaicon {
-  display: inline-block;
-  background-image: url(/static/images/instagram_logo.png);
-  padding: 0px;
+
+.main-container {
+  /* background-color: aqua; */
 }
-a {
-  text-decoration: none;
+.post-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-li {
-  list-style: none;
-}
-.icons{
-  display:flex;
+.followers-container {
+  /* background-color: green; */
 }
