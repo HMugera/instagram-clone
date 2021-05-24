@@ -101,20 +101,23 @@ def like_post(request,post_id):
 
 def profile(request,username):
     user = User.objects.get(username=username)
+    posts = Post.objects.filter(user__id = user.id)
+    
 
-    try:
-        profile=Profile.filter_profile_by_id(user.id)
-        print(profile)
+    # try:
+    #     profile=Profile.filter_profile_by_id(user.id)
+    #     print(profile)
 
-    except Profile.DoesNotExist:
-        Profile.objects.create(
-            user=user
-        )
-        profile=Profile.filter_profile_by_id(user.id)
-        print(profile)
+    # except Profile.DoesNotExist:
+    #     Profile.objects.create(
+    #         user=user
+    #     )
+    #     profile=Profile.filter_profile_by_id(user.id)
+    #     print(profile)
 
     ctx = {
-        "profile":profile,
+        "posts":posts,
+     
         'user':user
         }
    

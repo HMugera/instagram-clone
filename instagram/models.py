@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
-    profile_picture = models.ImageField(upload_to='pictures/',default='default.png')
+    profile_picture =CloudinaryField('image')
     bio = models.TextField(max_length=500, default="My Bio", blank=True)
   
 
