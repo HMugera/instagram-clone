@@ -142,6 +142,7 @@ def unfollow(request,id):
 def profile(request,username):
     user = User.objects.get(username=username)
     posts = Post.objects.filter(user__id = user.id)
+    follow = Follow.objects.filter(follower_id = user.id)
     
     try:
         profile=Profile.filter_profile_by_id(user.id)
@@ -157,7 +158,8 @@ def profile(request,username):
     ctx = {
         "posts":posts,
         "profile":profile,
-        'user':user
+        'user':user,
+        "follow":follow
         }
    
     return render(request, 'profile/profile.html',ctx)
