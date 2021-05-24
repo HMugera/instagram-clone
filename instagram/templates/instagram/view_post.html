@@ -3,22 +3,49 @@
 {% block content %}
 <!-- content -->
 <div class="container">
-  <h3 class="text-center"></h3>
-  <div class="row">
-    <div class="col-md-7">
-      <div class="card" style="width: 18rem">
-        {%if post.image%}
-        <img src="{{post.image.url}}" class="card-img-top" alt="..." />
-        {%endif%}
-
-        <div class="card-body">
-          <h5 class="card-title">{{post.name}}</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+  <div class="single_post-container row">
+    <div class="col-md-6 image-container">
+      <img src="{{post.image.url}}" alt="" />
+    </div>
+    <div class="col-md-6 comments-container">
+      <div class="user">
+        <div class="user_name">@ {{post.user.username}}</div>
+      </div>
+      <hr />
+      <div class="post">
+        <span class="user_name"> {{post.user.username}} </span>
+        {{post.name}}
+        <p class="post_caption">{{post.caption}}</p>
+      </div>
+      <div class="comments-wrapper">{{comments}}</div>
+      <hr />
+      <div class="icons-container">
+        <div class="like mr-3">
+          <a href="">
+            <img src="../../static/images/heart.png" alt="" />
+          </a>
         </div>
+        <div class="comment">
+          <a href="">
+            <img src="../../static/images/message.png" alt="" />
+          </a>
+        </div>
+      </div>
+      <h5>likes</h5>
+      <h6>time</h6>
+      <div class="comments-form">
+        <form action="{%url 'instagram:add_comment' post.id %}" method="POST">
+          {%csrf_token%}
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="comment"
+              placeholder="Add comment"
+            />
+            <button class="btn btn-success" type="submit">Post</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

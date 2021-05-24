@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls.base import reverse
 from .forms import *
 from django.contrib import messages
-from .models import Post, Comment, Profile, Follow
+from .models import Post, Comments, Profile, Follow
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from django.views import generic 
@@ -47,9 +47,35 @@ def upload_picture(request):
 
 def view_post(request,pk):
     post = Post.objects.get(id=pk)
-    ctx = {'post':post}
+    try:
+        comments = Comments.filter_comments_by_post_id(pk)
+        print(comments)
+        
+    except Comments.DoesNotExist:  
+        comments = None
+    
+    ctx = {
+        'post':post,
+        "comments":comments
+        }
     
     return render(request,'instagram/view_post.html',ctx)
+
+def add_comment(request,post_id):
+    current_user = request.user
+    if request.method == 'POST':
+        comment= request.POST.get('comment')
+    post = Post.objects.get(id=post_id)
+    user_profile = User.objects.get(username=current_user.username)
+    Comments.objects.create(
+         comment=comment,
+         post = post,
+         user=user_profile   
+        )
+    return redirect('instagram:view_post' ,pk=post_id)
+
+
+
 
 def profile(request,username):
     user = User.objects.get(username=username)

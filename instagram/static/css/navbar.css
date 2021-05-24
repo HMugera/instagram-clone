@@ -4,6 +4,7 @@ a {
 li {
   list-style: none;
 }
+
 .icons {
   display: flex;
 }
@@ -12,8 +13,7 @@ li {
   display: none;
 }
 
-
-.nav-link  {
+.nav-link {
   color: #fff !important;
   text-decoration: none;
 }
