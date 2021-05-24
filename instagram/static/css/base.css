@@ -12,3 +12,9 @@ nav {
   background-image: url(/static/images/instagram_logo.png);
   padding: 0px;
 }
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}

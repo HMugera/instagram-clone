@@ -18,7 +18,20 @@
       Search
     </button> -->
   </form>
-  <div class="icons">
-    <a class="text-white" href="">Login</a>
-  </div>
+  {% if user.is_authenticated %}
+
+  <ul class="icons">
+    <li>
+      <a class="text-white" href="#">{{user}}</a>
+    </li>
+    <li>
+      <a  class="text-white" href="/logout">Logout</a>
+    </li>
+  </ul>
+  {% else %}
+  <li>
+    <a class="btn btn-default text-white" href="accounts/login">Login</a>
+  </li>
+
+  {% endif %}
 </nav>
