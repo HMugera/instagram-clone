@@ -19,13 +19,32 @@
     </button> -->
   </form>
   {% if user.is_authenticated %}
+  <!-- <li class="nav-item dropdown">
+    <a
+      class="nav-link dropdown-toggle"
+      href="#"
+      id="navbarDropdownMenuLink"
+      role="button"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      {{user}}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <a class="text-white" href="/logout">Logout</a>
+    </div>
+  </li> -->
 
   <ul class="icons">
     <li>
-      <a class="text-white" href="#">{{user}}</a>
+      <a class="text-white mr-4" href="#"> {{user}}</a>
     </li>
     <li>
-      <a  class="text-white" href="/logout">Logout</a>
+      <a class="text-white mr-4" href="{%url 'instagram:upload'%}">upload</a>
+    </li>
+    <li>
+      <a class="text-white" href="/logout">Logout</a>
     </li>
   </ul>
   {% else %}
@@ -33,5 +52,5 @@
     <a class="btn btn-default text-white" href="accounts/login">Login</a>
   </li>
 
-  {% endif %}
+  {%endif%}
 </nav>

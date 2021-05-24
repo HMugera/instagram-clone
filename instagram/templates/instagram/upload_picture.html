@@ -2,5 +2,16 @@
 <!-- html -->
 {% block content %}
 <!-- content -->
-<h3>upload picture</h3>
+<div class="container mt-4">
+  <h4 class="text-center">Upload Picture</h4>
+  <form
+    action="{%url 'instagram:upload' %}"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {%csrf_token%} {{form.as_p}}
+    <input type="submit" class="btn btn-success btn-lg" value="Post" />
+  </form>
+</div>
+
 {% endblock%}

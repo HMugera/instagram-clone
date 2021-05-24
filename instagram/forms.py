@@ -12,7 +12,7 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'fullname', 'email', 'password1','password2')
         
         
-class UploadImageForm(forms.ModelForm):
+class UploadImageModelForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('image','title', 'description')
+        fields = ('image','name', 'caption')

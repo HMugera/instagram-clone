@@ -23,10 +23,31 @@ class SignupView(generic.CreateView):
 
 
 
-class HomeView(generic.TemplateView):
-    template_name = 'instagram/home_page.html'
+# class HomeView(generic.TemplateView):
+#     template_name = 'instagram/home_page.html'
 
-# class HomeView(generic.ListView):
-#     template_name = 'leads/lead_list.html'
-#     queryset = Lead.objects.all()
-#     context_object_name = "leads"
+class HomeView(generic.ListView):
+    template_name = 'instagram/home_page.html'
+    queryset = Post.objects.all()
+    context_object_name = "posts"
+
+# class UploadPictureView(generic.CreateView):
+#     template_name = 'instagram/upload_picture.html'
+#     form_class = UploadImageModelForm
+
+#     def get_success_url(self):
+#         return reverse("instagram:home")
+def upload_picture(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = UploadImageModelForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+            return redirect('/',username=request.user)
+    else:
+        form = UploadImageModelForm()
+    return render(request,'instagram/upload_picture.html',{'form':form})
+    
+    
