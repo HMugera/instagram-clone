@@ -1,7 +1,7 @@
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import SignupView,upload_picture,home_page,view_post
+from .views import SignupView,upload_picture,home_page,view_post,profile,update_profile
 import django.contrib.auth.urls 
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views  as auth_views
@@ -19,6 +19,9 @@ path('logout/', auth_views.LogoutView.as_view(next_page = '/')),
 
 path('upload/',upload_picture, name='upload'),
 path('post/<int:pk>',view_post, name='view_post'),
+path('profile/<str:username>',profile, name='profile'),
+path('update_profile/<int:id>',update_profile, name='update_profile'),
+
 
   
 ]

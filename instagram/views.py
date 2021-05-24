@@ -50,6 +50,30 @@ def view_post(request,pk):
     ctx = {'post':post}
     
     return render(request,'instagram/view_post.html',ctx)
+
+def profile(request,username):
+    user = User.objects.get(username=username)
+    profile = Profile.filter_profile_by_id(user.id)
+
+    ctx = {
+        "profile":profile,
+        'user':user
+        }
+   
+    return render(request, 'profile/profile.html',ctx)
+
+def update_profile(request,id):
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user = user)
+    form = UpdateUserProfileForm(instance=profile)
+    if request.method == "POST":
+            form = UpdateUserProfileForm(request.POST,instance=profile)
+            if form.is_valid():  
+                form.save()
+                return redirect('/') 
+            
+    ctx= {"form":form}
+    return render(request, 'profile/update_profile.html',ctx)
     
     
     

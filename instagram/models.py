@@ -2,16 +2,14 @@ from django.db import models
 from cloudinary.models import CloudinaryField  
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
-    profile_picture = CloudinaryField('image')
+    profile_picture = models.ImageField(upload_to='pictures/',default='default.png')
     bio = models.TextField(max_length=500, default="My Bio", blank=True)
-    name = models.CharField(blank=True, max_length=120)
-    location = models.CharField(max_length=60, blank=True)
+  
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -21,6 +19,11 @@ class Profile(models.Model):
 
     def delete_profile(self):
         self.delete()
+    
+    @classmethod
+    def filter_profile_by_id(cls, id):
+        profile = Profile.objects.filter(user = id).first()
+        return profile
 
     @classmethod
     def search_profile(cls, name):
@@ -46,6 +49,11 @@ class Post(models.Model):
 
     def total_likes(self):
         return self.likes.count()
+    
+    @classmethod
+    def get_profile_posts(cls,profile):
+        posts = Post.objects.filter(profile__pk= profile)
+        return posts
 
     def __str__(self):
         return f'{self.user.name} Post'

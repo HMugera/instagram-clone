@@ -1,0 +1,36 @@
+{%extends 'instagram/base.html'%}
+<!-- html -->
+{% block content %}
+<!-- content -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="use_profile">
+        <h5>{{user.username}}</h5>
+
+        {% if profile.profile_picture %}
+        <img
+          class="profile-picture"
+          src="{{profile.profile_picture.url}}"
+          alt=""
+        />
+        {% endif %}
+
+        <h5>bio</h5>
+        {{profile.bio}}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div>
+        <a
+          href="{%url 'instagram:update_profile' user.id %}"
+          class="btn btn-outline-primary"
+        >
+          Edit Profile</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock%}
