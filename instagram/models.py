@@ -46,7 +46,7 @@ class Post(models.Model):
     name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True, )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    user = models.ForeignKey(user, on_delete=models.CASCADE, related_name='posts')
     created = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
