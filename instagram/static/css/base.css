@@ -126,6 +126,17 @@ body {
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
 }
 
+.form {
+  min-width: 300px;
+  width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+}
+
 /* single_post-container */
 .single_post-container {
   width: 100%;

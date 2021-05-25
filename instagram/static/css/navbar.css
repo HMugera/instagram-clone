@@ -22,3 +22,18 @@ li {
   height: 48px;
   margin-left: 20px;
 }
+
+.nav-icon {
+  height: 40px;
+  width: 40px;
+}
+.nav-user {
+  height: 45px;
+  width: 45px;
+
+  border-radius: 50%;
+}
+.nav-user img,
+.nav-icon img {
+  width: 100%;
+}

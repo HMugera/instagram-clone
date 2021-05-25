@@ -46,7 +46,10 @@
             <span class="caption">{{post.caption}}</span>
           </div>
           <h5>
-            <a href="{%url 'instagram:view_post' post.id %}">
+            <a
+              class="text-decoration-none"
+              href="{%url 'instagram:view_post' post.id %}"
+            >
               View all comments
             </a>
           </h5>
@@ -83,7 +86,7 @@
           {% for user in users %}
 
           <div class="single-user-container">
-            <div class="">{{user.username}}</div>
+            <div class="user_name">{{user.username}}</div>
             <div>
               <a
                 href="{%url 'instagram:follow' user.id %}"

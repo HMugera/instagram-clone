@@ -34,16 +34,35 @@
       </form>
       {% if user.is_authenticated %}
       <ul class="icons m-0">
-        <li class="nav-item dropdown">
+        <li class="nav-item">
+          <a class="nav-link mr-0" href="{%url 'instagram:home'%}">
+            <img src="../../static/images/home.png" alt="" class="nav-icon" />
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-0" href="#">
+            <img src="../../static/images/send.png" alt="" class="nav-icon" />
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-0" href="{%url 'instagram:upload'%}">
+            <img src="../../static/images/photo.png" alt="" class="nav-icon" />
+          </a>
+        </li>
+        <li class="nav-item dropdown mr-5">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link"
             href="#"
             role="button"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {{user}}
+            <img
+              src="{{user.profile.profile_picture.url}}"
+              alt=""
+              class="nav-user"
+            />
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a
@@ -55,10 +74,6 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/logout">Logout</a>
           </div>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link mr-4" href="{%url 'instagram:upload'%}">upload</a>
         </li>
       </ul>
       {% else %}
