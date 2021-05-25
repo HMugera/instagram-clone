@@ -15,16 +15,20 @@
     </div>
     <div class="details">
       <div class="first">
-        <h3>{{user.username}}</h3>
+        <h3>{{user_select.username}}</h3>
         {% if follow_status %}
         <div>
-          <a href="{%url 'instagram:follow' user.id %}" class="btn btn-danger"
+          <a
+            href="{%url 'instagram:unfollow' user_select.id %}"
+            class="btn btn-danger"
             >Unfollow</a
           >
         </div>
         {%else%}
         <div>
-          <a href="{%url 'instagram:follow' user.id %}" class="btn btn-success"
+          <a
+            href="{%url 'instagram:follow' user_select.id %}"
+            class="btn btn-success"
             >Follow</a
           >
         </div>
@@ -37,10 +41,10 @@
       <div class="third">
         <div class="posts ml-3"><span>{{posts.count}}</span> posts</div>
         <div class="followers ml-3">
-          <span>{{user.followers.count}}</span> followers
+          <span>{{user_select.followers.count}}</span> followers
         </div>
         <div class="following ml-3">
-          <span>{{user.following.count}}</span> following
+          <span>{{user_select.following.count}}</span> following
         </div>
       </div>
     </div>

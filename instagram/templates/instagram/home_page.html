@@ -87,12 +87,15 @@
           {% for user in users %}
 
           <div class="single-user-container">
-            <div class="user">
+            <a
+              class="text-decoration-none user"
+              href="{%url 'instagram:user_profile' username=user %}"
+            >
               <div class="image">
                 <img src="{{user.profile.profile_picture.url}}" alt="" />
               </div>
               <div class="user_name mb-2">{{user.username}}</div>
-            </div>
+            </a>
           </div>
           {% endfor %}
         </div>

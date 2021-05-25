@@ -1,7 +1,7 @@
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import SignupView,upload_picture,home_page,view_post,profile,update_profile,add_comment,like_post,follow,search_results,user_profile
+from .views import SignupView,upload_picture,home_page,view_post,profile,update_profile,add_comment,like_post,follow,unfollow,search_results,user_profile
 import django.contrib.auth.urls 
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views  as auth_views
@@ -32,6 +32,7 @@ path('user_profile/<str:username>',user_profile, name='user_profile'),
 
 
 path('follow/<int:id>',follow, name='follow'),
+path('unfollow/<int:id>',unfollow, name='unfollow'),
 
 
   

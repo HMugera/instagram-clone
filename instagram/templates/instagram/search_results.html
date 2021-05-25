@@ -4,27 +4,20 @@
 <!-- content -->
 <div class="container">
   <div class="users-wrapper">
+    <h4 class="text-center mb-3">Search Results</h4>
+    <hr />
     {% for profile in profiles %}
 
-    <div class="single-user-container">
-      <div class="user">
+    <div class="single-user-container mt-3">
+      <a
+        class="text-decoration-none user"
+        href="{%url 'instagram:user_profile' username=user %}"
+      >
         <div class="image">
           <img src="{{profile.profile_picture.url}}" alt="" />
         </div>
         <div class="user_name mb-2">{{profile.user.username.capitalize}}</div>
-      </div>
-
-      <div>
-        <a href="{%url 'instagram:follow' user.id %}" class="btn btn-success"
-          >Follow</a
-        >
-      </div>
-
-      <div>
-        <a href="{%url 'instagram:follow' user.id %}" class="btn btn-danger"
-          >Unfollow</a
-        >
-      </div>
+      </a>
     </div>
     {%empty%}
     <h4 class="text-center">No user found search-term {{message}}</h4>

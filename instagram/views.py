@@ -129,14 +129,14 @@ def follow(request,id):
         user_follow=User.objects.get(pk=id)
         follow_user=Follow(follower=request.user, followed=user_follow)
         follow_user.save()
-        return redirect('/')
+        return redirect('instagram:user_profile' ,username=user_follow.username)
     
 def unfollow(request,id):
     if request.method=='GET':
-        user_unfollow=Profile.objects.get(pk=id)
-        unfollow_user=Follow.objects.filter(follower=request.user.profile,followed=user_unfollow)
+        user_unfollow=User.objects.get(pk=id)
+        unfollow_user=Follow.objects.filter(follower=request.user,followed=user_unfollow)
         unfollow_user.delete()
-        return redirect('/')
+        return redirect('instagram:user_profile' ,username=user_unfollow.username)
 
 
 
@@ -146,16 +146,7 @@ def profile(request,username):
     posts = Post.objects.filter(user__id = user.id)
     follow = Follow.objects.filter(follower_id = user.id)
     
-    try:
-        profile=Profile.filter_profile_by_id(user.id)
-      
-    except Profile.DoesNotExist:
-        Profile.objects.create(
-            user=user
-        )
-        profile=Profile.filter_profile_by_id(user.id)
-        print(profile)
-   
+    profile=Profile.filter_profile_by_id(user.id) 
 
     ctx = {
         "posts":posts,
@@ -167,31 +158,32 @@ def profile(request,username):
     return render(request, 'profile/profile.html',ctx)
 
 def user_profile(request,username):
-    user = User.objects.get(username=username)
-    posts = Post.objects.filter(user__id = user.id)
-    follow = Follow.objects.filter(follower_id = user.id)
+    current_user = request.user
+    user = User.objects.get(username=current_user.username)
+    user_select = User.objects.get(username=username)
+    if user_select == user:
+        return redirect('instagram:profile', username=request.user.username)
     
-    try:
-        profile=Profile.filter_profile_by_id(user.id)
+    posts = Post.objects.filter(user__id = user_select.id)
+    follow = Follow.objects.filter(follower_id = user_select.id)
+    
+    profile=Profile.filter_profile_by_id(user_select.id)
       
-    except Profile.DoesNotExist:
-        Profile.objects.create(
-            user=user
-        )
-        profile=Profile.filter_profile_by_id(user.id)
-        print(profile)
-    followers = Follow.objects.filter(follower__id=user.id)
-    follow_status = None
+    followers = Follow.objects.filter(followed=user_select.id)
+    print(followers)
+    follow_status = False
     for follower in followers:
-        if request.user.profile == follower.follower:
+        if user.id == follower.follower.id:
             follow_status = True
+            break
         else:
             follow_status = False
-
+    print(follow_status)
     ctx = {
         "posts":posts,
         "profile":profile,
-        'user':user,
+        "user":user,
+        'user_select':user_select,
          'followers': followers,
         'follow_status': follow_status
         }

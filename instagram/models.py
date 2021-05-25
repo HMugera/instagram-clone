@@ -33,7 +33,7 @@ class Profile(models.Model):
     
     @classmethod
     def filter_profile_by_id(cls, id):
-        profile = Profile.objects.filter(user = id).first()
+        profile = Profile.objects.filter(user__id = id).first()
         return profile
 
     @classmethod
