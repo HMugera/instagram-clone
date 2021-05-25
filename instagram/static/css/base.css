@@ -6,7 +6,7 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #000 transparent;
+  scrollbar-color: rgb(109, 108, 108) transparent;
   scroll-behavior: smooth;
 }
 html,
@@ -16,13 +16,13 @@ body {
 }
 
 *::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
 }
 *::-webkit-scrollbar-track {
   background: transparent;
 }
 *::-webkit-scrollbar-thumb {
-  background: #000;
+  background: rgb(109, 108, 108);
   border-radius: 10px;
   border: transparent;
 }
