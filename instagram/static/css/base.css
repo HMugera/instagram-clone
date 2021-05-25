@@ -9,6 +9,10 @@
   scrollbar-color: #000 transparent;
   scroll-behavior: smooth;
 }
+html,
+body {
+  overflow-x: hidden;
+}
 
 *::-webkit-scrollbar {
   width: 8px;
