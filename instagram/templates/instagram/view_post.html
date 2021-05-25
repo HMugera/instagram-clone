@@ -10,13 +10,13 @@
     <div class="col-md-6 comments-container">
       <div class="user">
         <div class="image">
-          <img src="{{post.user.profile.profile_picture.url}}" alt="" />
+          <img src="{{post.user.profile_picture.url}}" alt="" />
         </div>
-        <div class="user_name ml-1 mb-2">{{post.user.username}}</div>
+        <div class="user_name ml-1 mb-2">{{post.user.user.username}}</div>
       </div>
       <hr />
       <div class="post">
-        <span class="user_name"> {{post.user.username}} </span>
+        <span class="user_name"> {{post.user.user.username}} </span>
         {{post.name}}
         <p class="post_caption">{{post.caption}}</p>
       </div>

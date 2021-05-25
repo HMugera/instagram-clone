@@ -10,9 +10,9 @@
       <div class="card m-3">
         <div class="card-header mb-2 p-1">
           <div class="image">
-            <img src="{{post.user.profile.profile_picture.url}}" alt="" />
+            <img src="{{post.user.profile_picture.url}}" alt="" />
           </div>
-          <div class="user_name ml-1 mb-2">{{post.user.username}}</div>
+          <div class="user_name ml-1 mb-2">{{post.user.user.username}}</div>
         </div>
         {%if post.image%}
         <a href="{%url 'instagram:view_post' post.id %}">
@@ -41,7 +41,7 @@
           </div>
           <h5>{{post.likes.count}} likes</h5>
           <div class="card-text">
-            <span class="username"> {{post.user.username}} </span>
+            <span class="username"> {{post.user.user.username}} </span>
             <span class="caption">{{post.caption}}</span>
           </div>
           <h5>

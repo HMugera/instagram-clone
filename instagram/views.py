@@ -143,7 +143,7 @@ def unfollow(request,id):
 
 def profile(request,username):
     user = User.objects.get(username=username)
-    posts = Post.objects.filter(user__id = user.id)
+    posts = Post.objects.filter(user = user.id)
     follow = Follow.objects.filter(follower_id = user.id)
     
     profile=Profile.filter_profile_by_id(user.id) 
@@ -164,13 +164,13 @@ def user_profile(request,username):
     if user_select == user:
         return redirect('instagram:profile', username=request.user.username)
     
-    posts = Post.objects.filter(user__id = user_select.id)
+    posts = Post.objects.filter(user = user_select.id)
     follow = Follow.objects.filter(follower_id = user_select.id)
     
     profile=Profile.filter_profile_by_id(user_select.id)
       
     followers = Follow.objects.filter(followed=user_select.id)
-    print(followers)
+   
     follow_status = False
     for follower in followers:
         if user.id == follower.follower.id:
@@ -178,7 +178,7 @@ def user_profile(request,username):
             break
         else:
             follow_status = False
-    print(follow_status)
+  
     ctx = {
         "posts":posts,
         "profile":profile,
