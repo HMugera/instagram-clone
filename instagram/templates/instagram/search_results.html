@@ -11,7 +11,7 @@
     <div class="single-user-container mt-3">
       <a
         class="text-decoration-none user"
-        href="{%url 'instagram:user_profile' username=user %}"
+        href="{%url 'instagram:user_profile' username=profile.user.username %}"
       >
         <div class="image">
           <img src="{{profile.profile_picture.url}}" alt="" />
