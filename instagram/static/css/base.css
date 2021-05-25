@@ -91,15 +91,16 @@ body {
   align-items: center;
   width: 300px;
   margin: auto;
-  border-bottom: 1px solid black;
 }
 .user-header .image,
-.card-header .image {
+.card-header .image,
+.user .image {
   border-radius: 50%;
   margin-bottom: 10px;
 }
 .user-header .image img,
-.card-header .image img {
+.card-header .image img,
+.user .image img {
   height: 40px;
   width: 40px;
   object-fit: cover;
@@ -107,12 +108,16 @@ body {
   border-radius: 50%;
 }
 
+.user {
+  display: flex;
+  align-items: center;
+}
 .users-wrapper {
   display: flex;
   flex-direction: column;
   width: 400px;
-  margin: 10px auto;
-  padding: 20px;
+  margin: 20px auto;
+  padding: 10px;
 }
 .single-user-container {
   display: flex;
@@ -120,7 +125,7 @@ body {
   align-items: center;
   margin-bottom: 10px;
 
-  padding: 10px 10px 10px 10px;
+  padding: 5px 10px 5px 10px;
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);

@@ -155,23 +155,48 @@ def profile(request,username):
         )
         profile=Profile.filter_profile_by_id(user.id)
         print(profile)
-    # followers = Follow.objects.filter(followed=user.profile)
-    # follow_status = None
-    # for follower in followers:
-    #     if request.user.profile == follower.follower:
-    #         follow_status = True
-    #     else:
-    #         follow_status = False
+   
 
     ctx = {
         "posts":posts,
         "profile":profile,
         'user':user,
-        #  'followers': followers,
-        # 'follow_status': follow_status
+        
         }
    
     return render(request, 'profile/profile.html',ctx)
+
+def user_profile(request,username):
+    user = User.objects.get(username=username)
+    posts = Post.objects.filter(user__id = user.id)
+    follow = Follow.objects.filter(follower_id = user.id)
+    
+    try:
+        profile=Profile.filter_profile_by_id(user.id)
+      
+    except Profile.DoesNotExist:
+        Profile.objects.create(
+            user=user
+        )
+        profile=Profile.filter_profile_by_id(user.id)
+        print(profile)
+    followers = Follow.objects.filter(follower__id=user.id)
+    follow_status = None
+    for follower in followers:
+        if request.user.profile == follower.follower:
+            follow_status = True
+        else:
+            follow_status = False
+
+    ctx = {
+        "posts":posts,
+        "profile":profile,
+        'user':user,
+         'followers': followers,
+        'follow_status': follow_status
+        }
+   
+    return render(request, 'instagram/user_profile.html',ctx)
 
 def update_profile(request,id):
     user = User.objects.get(id=id)

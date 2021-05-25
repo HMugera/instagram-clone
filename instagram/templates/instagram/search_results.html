@@ -7,7 +7,13 @@
     {% for profile in profiles %}
 
     <div class="single-user-container">
-      <div class="user_name">@{{profile.user.username.capitalize}}</div>
+      <div class="user">
+        <div class="image">
+          <img src="{{profile.profile_picture.url}}" alt="" />
+        </div>
+        <div class="user_name mb-2">{{profile.user.username.capitalize}}</div>
+      </div>
+
       <div>
         <a href="{%url 'instagram:follow' user.id %}" class="btn btn-success"
           >Follow</a

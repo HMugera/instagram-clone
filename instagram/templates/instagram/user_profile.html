@@ -16,15 +16,19 @@
     <div class="details">
       <div class="first">
         <h3>{{user.username}}</h3>
-        {% if request.user is user %} hm {% endif %}
+        {% if follow_status %}
         <div>
-          <a
-            href="{%url 'instagram:update_profile' user.id %}"
-            class="btn btn-outline-dark mb-4"
-          >
-            Edit Profile</a
+          <a href="{%url 'instagram:follow' user.id %}" class="btn btn-danger"
+            >Unfollow</a
           >
         </div>
+        {%else%}
+        <div>
+          <a href="{%url 'instagram:follow' user.id %}" class="btn btn-success"
+            >Follow</a
+          >
+        </div>
+        {% endif %}
       </div>
       <div class="second">
         <h5>Bio</h5>
