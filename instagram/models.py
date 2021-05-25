@@ -52,10 +52,10 @@ class Post(models.Model):
     class Meta:
         ordering = ["-pk"]
 
-    def save_image(self):
+    def save_post(self):
         self.save()
 
-    def delete_image(self):
+    def delete_post(self):
         self.delete()
 
     def total_likes(self):
@@ -65,6 +65,10 @@ class Post(models.Model):
     def get_profile_posts(cls,profile):
         posts = Post.objects.filter(profile__pk= profile)
         return posts
+    @classmethod
+    def update_post_caption(cls,id,caption):
+        update =cls.objects.filter(id=id).update(caption=caption)
+        return update
 
     def __str__(self):
         return f'{self.user.name} Post'
