@@ -31,8 +31,8 @@ def home_page(request):
     posts = Post.objects.all()
     result=[]
     user = User.objects.get(username=current_user.username)
-    users = User.objects.exclude(username=current_user.username)
-   
+    users = User.objects.exclude(username=current_user.username).exclude(is_superuser=True)
+    # user = Profile.objects.get(user__username=current_user.username)
     
    
     ctx = {
@@ -46,7 +46,7 @@ def home_page(request):
     
     return render(request,'instagram/home_page.html',ctx)
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def upload_picture(request):
     current_user = request.user
     if request.method == 'POST':
@@ -60,6 +60,7 @@ def upload_picture(request):
         form = UploadImageModelForm()
     return render(request,'instagram/upload_picture.html',{'form':form})
 
+@login_required(login_url='/accounts/login/')
 def view_post(request,pk):
     post = Post.objects.get(id=pk)
     try:
@@ -76,6 +77,7 @@ def view_post(request,pk):
     
     return render(request,'instagram/view_post.html',ctx)
 
+@login_required(login_url='/accounts/login/')
 def add_comment(request,post_id):
     current_user = request.user
     if request.method == 'POST':
@@ -153,12 +155,20 @@ def profile(request,username):
         )
         profile=Profile.filter_profile_by_id(user.id)
         print(profile)
+    # followers = Follow.objects.filter(followed=user.profile)
+    # follow_status = None
+    # for follower in followers:
+    #     if request.user.profile == follower.follower:
+    #         follow_status = True
+    #     else:
+    #         follow_status = False
 
     ctx = {
         "posts":posts,
         "profile":profile,
         'user':user,
-        "follow":follow
+        #  'followers': followers,
+        # 'follow_status': follow_status
         }
    
     return render(request, 'profile/profile.html',ctx)
@@ -168,10 +178,11 @@ def update_profile(request,id):
     profile = Profile.objects.get(user = user)
     form = UpdateUserProfileForm(instance=profile)
     if request.method == "POST":
-            form = UpdateUserProfileForm(request.POST,instance=profile)
+            form = UpdateUserProfileForm(request.POST,request.FILES,instance=profile)
             if form.is_valid():  
-                profile.bio = form.cleaned_data['bio']
-                profile.profile_picture = form.cleaned_data['profile_picture']
+                # profile.bio = form.cleaned_data['bio']
+                # profile.profile_picture = form.cleaned_data['profile_picture']
+                profile = form.save(commit=False)
                 profile.save()
                 return redirect('instagram:profile' ,username=user.username) 
             

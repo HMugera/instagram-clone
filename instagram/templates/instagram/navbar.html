@@ -13,13 +13,9 @@
   </head>
   <body>
     {% load static%}
-    <nav class="navbar navbar-dark bg-dark m-0">
+    <nav class="navbar m-0">
       <a href="/" class="navbar-brand mb-0 h1">
-        INSTAGRAM
-        <!-- <a href="/">
-      <div id="brand" class="instaicon logo d-none d-sm-block"></div>
-      <div class="instaicon mainicon d-block d-sm-none"></div>
-    </a> -->
+        <img src="../../static/images/Instagram_logo.png" alt="" />
       </a>
       <form
         class="form-inline"
@@ -70,10 +66,11 @@
       </ul>
       {% else %}
       <li>
-        <a class="btn btn-default text-white" href="accounts/login">Login</a>
+        <a class="btn btn-default" href="accounts/login">Login</a>
       </li>
 
       {%endif%}
     </nav>
+    <hr class="m-0" />
   </body>
 </html>

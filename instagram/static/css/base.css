@@ -12,22 +12,28 @@
 html,
 body {
   overflow-x: hidden;
+  height: 100%;
 }
 
 *::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 *::-webkit-scrollbar-track {
   background: transparent;
 }
 *::-webkit-scrollbar-thumb {
   background: #000;
-  border-radius: 20px;
+  border-radius: 10px;
   border: transparent;
 }
-nav {
+/* nav {
   width: 100%;
   position: fixed;
+} */
+.navbar {
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
 }
 
 /* .main-container {
@@ -38,7 +44,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 15px 15px 0px 15px;
 }
 
 .post-container .card {
@@ -55,6 +61,12 @@ nav {
 }
 .card .card-text .username {
   font-weight: 600;
+}
+
+.card-header {
+  background-color: #fff !important;
+  display: flex;
+  align-items: center;
 }
 
 .followers-container {
@@ -81,14 +93,18 @@ nav {
   margin: auto;
   border-bottom: 1px solid black;
 }
-.user-header .image {
-  border: 2px solid black;
+.user-header .image,
+.card-header .image {
   border-radius: 50%;
   margin-bottom: 10px;
 }
-.user-header .image img {
+.user-header .image img,
+.card-header .image img {
   height: 40px;
+  width: 40px;
+  object-fit: cover;
   margin: 10px;
+  border-radius: 50%;
 }
 
 .users-wrapper {
@@ -100,11 +116,11 @@ nav {
 }
 .single-user-container {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  padding: 10px;
+
+  padding: 10px 10px 10px 10px;
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
@@ -113,11 +129,10 @@ nav {
 /* single_post-container */
 .single_post-container {
   width: 100%;
-  height: 550px;
-
-  margin-top: 100px;
+  height: 580px;
+  margin-top: 70px;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: scroll;
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
@@ -153,7 +168,8 @@ nav {
 
 .comments-form {
   margin: auto;
-  height: 60px;
+  height: 50px;
+  width: 100%;
 }
 .comments-form input {
   height: 50px;
@@ -217,11 +233,13 @@ nav {
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
 }
 
-.login-form .logo {
+.login-form .logo,
+.panel .logo {
   margin: 10px auto;
 }
-.login-form .logo img {
-  height: 50px;
+.login-form .logo img,
+.panel .logo img {
+  height: 60px;
 }
 
 .login-form .form input {
@@ -238,7 +256,7 @@ nav {
 
 .panel {
   margin-top: 20px;
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);

@@ -3,7 +3,25 @@
 {% block content %}
 <!-- content -->
 <div class="container">
-    
+  <div class="users-wrapper">
+    {% for profile in profiles %}
+
+    <div class="single-user-container">
+      <div class="user_name">@{{profile.user.username.capitalize}}</div>
+      <div>
+        <a href="{%url 'instagram:follow' user.id %}" class="btn btn-success"
+          >Follow</a
+        >
+      </div>
+
+      <div>
+        <a href="{%url 'instagram:follow' user.id %}" class="btn btn-danger"
+          >Unfollow</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock%}

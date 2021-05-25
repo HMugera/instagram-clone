@@ -8,6 +8,13 @@
       {% for post in posts %}
 
       <div class="card m-3">
+        <div class="card-header mb-2 p-1">
+          <div class="image">
+            <img src="{{post.user.profile.profile_picture.url}}" alt="" />
+            <!-- <img src="{{user.profile.image.url}}}" alt="" /> -->
+          </div>
+          <div class="user_name ml-1 mb-2">{{post.user.username}}</div>
+        </div>
         {%if post.image%}
         <a href="{%url 'instagram:view_post' post.id %}">
           <img src="{{post.image.url}}" class="card-img-top" alt="..." />
@@ -39,6 +46,20 @@
             </a>
           </h5>
         </div>
+        <div class="comments-form">
+          <form action="{%url 'instagram:add_comment' post.id %}" method="POST">
+            {%csrf_token%}
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                name="comment"
+                placeholder="Add comment"
+              />
+              <button class="btn btn-success" type="submit">Post</button>
+            </div>
+          </form>
+        </div>
       </div>
 
       {% endfor %}
@@ -47,10 +68,10 @@
       <div class="followers-wrapper">
         <div class="user-header">
           <div class="image">
-            <img src="../../../media/pictures/user.png" alt="" />
+            <img src="{{user.profile.profile_picture.url}}" alt="" />
             <!-- <img src="{{user.profile.image.url}}}" alt="" /> -->
           </div>
-          <div class="user_name ml-2">@{{user.username}}</div>
+          <div class="user_name ml-1 mb-2">{{user.username}}</div>
         </div>
         <p class="text-muted text-center mt-2 mb-2">Suggestions to follow</p>
         <div class="users-wrapper">
@@ -67,7 +88,11 @@
             </div>
 
             <div>
-              <a href="{%url 'instagram:follow' user.id %}" class="btn btn-danger">Unfollow</a>
+              <a
+                href="{%url 'instagram:follow' user.id %}"
+                class="btn btn-danger"
+                >Unfollow</a
+              >
             </div>
           </div>
           {% endfor %}
