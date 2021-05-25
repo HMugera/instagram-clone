@@ -9,6 +9,7 @@
   scrollbar-color: rgb(109, 108, 108) transparent;
   scroll-behavior: smooth;
 }
+
 html,
 body {
   overflow-x: hidden;
@@ -42,7 +43,7 @@ body {
 }
 
 .post-container .card {
-  width: 90%;
+  width: 75%;
   padding: 10px;
 }
 .icons-container {
@@ -72,11 +73,10 @@ body {
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
-  width: 85%;
+  width: 70%;
   margin: 25px auto;
   min-height: 500px;
   padding: 20px;
-
   border-radius: 10px;
 }
 
@@ -126,7 +126,6 @@ body {
 }
 
 .form {
-  /* min-width: 400px; */
   width: 600px;
   margin: 0 auto;
   padding: 10px;
@@ -281,10 +280,6 @@ body {
 @media screen and (max-width: 767px) {
   .post-container {
     background-color: blue;
-  }
-
-  .followers-container {
-    background-color: rgb(76, 218, 10);
   }
 }
 @media screen and (max-width: 460px) {
