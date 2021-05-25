@@ -23,6 +23,7 @@
 }
 nav {
   width: 100%;
+  position: fixed;
 }
 
 /* .main-container {
@@ -54,6 +55,7 @@ nav {
 
 .followers-container {
   padding: 20px;
+  position: fixed;
 }
 .followers-wrapper {
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
@@ -198,4 +200,47 @@ nav {
 }
 .user_profile .details .third span {
   font-weight: 600;
+}
+
+/* login */
+.login-form {
+  max-width: 40%;
+  margin: 90px auto;
+  padding: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+}
+
+.login-form .logo {
+  margin: 10px auto;
+}
+.login-form .logo img {
+  height: 50px;
+}
+
+.login-form .form input {
+  display: block;
+  font-size: 20px;
+}
+.login-form .form label {
+  display: block;
+}
+
+.login-form .form button {
+  width: 100%;
+}
+
+.panel {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+}
+
+.panel li {
+  list-style: none;
 }

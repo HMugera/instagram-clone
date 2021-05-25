@@ -20,8 +20,8 @@ class SignupView(generic.CreateView):
     form_class = SignUpForm
 
     def get_success_url(self):
-       
-        return reverse("login")
+        print("okay")
+        return reverse("instagram:login")
     
 
 
@@ -110,17 +110,17 @@ def like_post(request,post_id):
     return HttpResponseRedirect(reverse('instagram:home'))
 
 
-# @login_required
-# def search_results(request):
-#     if 'search_profile' in request.GET and request.GET["search_profile"]:
-#         search_term = request.GET.get("search_profile")
-#         searched_profiles = Profile.search_profile(search_term)
-#         print(searched_profiles)
-#         message = f"{search_term}"
-#         return render(request, 'instagram/search_results.html', {"message":message,"profiles": searched_profiles})
-#     else:
-#         message = "You haven't searched for any profile"
-#     return render(request, 'instagram/search_results.html', {'message': message})
+@login_required
+def search_results(request):
+    if 'search_profile' in request.GET and request.GET["search_profile"]:
+        search_term = request.GET.get("search_profile")
+        searched_profiles = Profile.search_profile(search_term)
+        print(searched_profiles)
+        message = f"{search_term}"
+        return render(request, 'instagram/search_results.html', {"message":message,"profiles": searched_profiles})
+    else:
+        message = "You haven't searched for any profile"
+    return render(request, 'instagram/search_results.html', {'message': message})
 
 def follow(request,id):
     if request.method == 'GET':
@@ -147,7 +147,6 @@ def profile(request,username):
     try:
         profile=Profile.filter_profile_by_id(user.id)
       
-
     except Profile.DoesNotExist:
         Profile.objects.create(
             user=user
