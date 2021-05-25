@@ -12,17 +12,34 @@ from django.contrib.auth import logout
 from django.views import generic 
 from cloudinary.forms import cl_init_js_callbacks
 from django.views.decorators.csrf import csrf_exempt
+from .email import send_welcome_email
 
 
 
-class SignupView(generic.CreateView):
-    template_name = 'registration/signup.html'
-    form_class = SignUpForm
 
-    def get_success_url(self):
-        print("okay")
-        return reverse("instagram:login")
-    
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+
+            name=form.cleaned_data['fullname']
+            email=form.cleaned_data['email']
+            
+            send_welcome_email(name,email)
+
+            user = authenticate(username=username, password=password)
+
+            login(request, user)
+
+
+            return redirect('instagram:home')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 @login_required(login_url='/accounts/login/')
