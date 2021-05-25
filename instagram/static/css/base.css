@@ -26,19 +26,13 @@ body {
   border-radius: 10px;
   border: transparent;
 }
-/* nav {
-  width: 100%;
-  position: fixed;
-} */
+
 .navbar {
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
 }
 
-/* .main-container {
-  background-color: #fafafa;
-} */
 .post-container {
   display: flex;
   flex-direction: column;
@@ -48,7 +42,8 @@ body {
 }
 
 .post-container .card {
-  width: 75%;
+  width: 90%;
+  padding: 10px;
 }
 .icons-container {
   display: flex;
@@ -77,7 +72,7 @@ body {
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
-  width: 70%;
+  width: 85%;
   margin: 25px auto;
   min-height: 500px;
   padding: 20px;
@@ -89,7 +84,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 85%;
   margin: auto;
 }
 .user-header .image,
@@ -117,7 +112,7 @@ body {
   display: flex;
   flex-direction: column;
 
-  width: 300px;
+  width: 90%;
   margin: 20px auto;
   padding: 10px;
 }
@@ -128,9 +123,6 @@ body {
   margin-bottom: 10px;
 
   padding: 5px 10px 5px 10px;
-  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
 }
 
 .form {
@@ -169,6 +161,7 @@ body {
   font-size: 21px;
 }
 .user_name {
+  font-size: 22px;
   font-weight: 600;
 }
 
@@ -283,4 +276,34 @@ body {
 
 .panel li {
   list-style: none;
+}
+
+@media screen and (max-width: 767px) {
+  .post-container {
+    background-color: blue;
+  }
+
+  .followers-container {
+    background-color: rgb(76, 218, 10);
+  }
+}
+@media screen and (max-width: 460px) {
+  .post-container {
+    background-color: rgb(255, 51, 0);
+    width: 90%;
+  }
+
+  .followers-container {
+    background-color: rgb(255, 0, 170);
+    width: 90%;
+  }
+  .user-header {
+    width: 90%;
+  }
+  .users-wrapper {
+    width: 90%;
+  }
+  .single_post-container {
+    width: 90%;
+  }
 }

@@ -37,3 +37,7 @@ li {
 .nav-icon img {
   width: 100%;
 }
+
+.navbar form input {
+  height: 50px;
+}

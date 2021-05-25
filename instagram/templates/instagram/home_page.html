@@ -8,7 +8,7 @@
       {% for post in posts %}
 
       <div class="card m-3">
-        <div class="card-header mb-2 p-1">
+        <div class="card-header p-1">
           <div class="image">
             <img src="{{post.user.profile_picture.url}}" alt="" />
           </div>
@@ -77,7 +77,6 @@
         <div class="user-header">
           <div class="image">
             <img src="{{user.profile.profile_picture.url}}" alt="" />
-            <!-- <img src="{{user.profile.image.url}}}" alt="" /> -->
           </div>
           <div class="user_name ml-1 mb-2">{{user.username}}</div>
         </div>
@@ -97,6 +96,7 @@
               <div class="user_name mb-2">{{user.username}}</div>
             </a>
           </div>
+          <hr />
           {% endfor %}
         </div>
       </div>
