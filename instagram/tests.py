@@ -2,7 +2,7 @@ from django.test import TestCase
 from .models import Follow,Comments,Post,Profile,User
 import datetime as dt
 
-#    self.new_image = Image(name='Art',description="Street Art" ,location=self.location,category=self.category)
+
 class PostTestClass(TestCase):
     #setup method
     def setUp(self):
@@ -36,18 +36,37 @@ class PostTestClass(TestCase):
         updated= Post.objects.get(caption='test')
         self.assertEqual(updated.caption,'test')
             
-   
         
-#     def test_filter_by_location(self):
-#         self.new_image.save_image()
-#         found_images = self.new_image.filter_by_location(location='Mombasa')
-#         self.assertTrue(len(found_images) == 1)
-        
-#     def test_search_image_by_category(self):
-#         self.new_image.save_image()
-#         found_img = self.new_image.search_by_category('Family')
-#         self.assertTrue(len(found_img) == 1)
 
+class CommentsTestClass(TestCase):
+    #setup method
+    def setUp(self):
+        self.user = User(username='Mugera')
+        self.user.save()
+        self.user_profile = Profile(user=self.user,profile_picture="good_picture.png")
+        self.post = Post(name="views",caption="Nyc views",user=self.user_profile)
+        self.post.save()
+        self.comment = Comments(comment="Awsome",post=self.post,user=self.user)
+        
+    def tearDown(self):
+        Post.objects.all().delete()
+        User.objects.all().delete()
+        Comments.objects.all().delete()
+        
+            
+    def test_instance(self):
+        self.assertTrue(isinstance(self.comment,Comments))
+            
+    def test_save_comment(self):
+        self.comment.save_comment()
+        comments=Comments.objects.all()
+        self.assertTrue(len(comments)>0)
+        
+    def test_delete_comment(self):
+        self.comment.save_comment()
+        self.comment.delete_comment()
+        comments=Comments.objects.all()
+        self.assertTrue(len(comments)==0)
 
 
 
