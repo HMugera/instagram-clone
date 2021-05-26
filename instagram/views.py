@@ -21,15 +21,13 @@ def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-
             form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
-
             name=form.cleaned_data['fullname']
             email=form.cleaned_data['email']
-            
-            # send_welcome_email(name,email)
+           
+            send_welcome_email(name,email)
 
             user = authenticate(username=username, password=password)
 
