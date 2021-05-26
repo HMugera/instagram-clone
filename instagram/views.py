@@ -29,7 +29,7 @@ def signup_view(request):
             name=form.cleaned_data['fullname']
             email=form.cleaned_data['email']
             
-            # send_welcome_email(name,email)
+            send_welcome_email(name,email)
 
             user = authenticate(username=username, password=password)
 
@@ -45,10 +45,10 @@ def signup_view(request):
 def home_page(request):
     current_user = request.user
     posts = Post.objects.all()
-    result=[]
+   
     user = User.objects.get(username=current_user.username)
     users = User.objects.exclude(username=current_user.username).exclude(is_superuser=True)
-    # user = Profile.objects.get(user__username=current_user.username)
+  
     
    
     ctx = {
