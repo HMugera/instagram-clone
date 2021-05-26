@@ -65,12 +65,13 @@ def home_page(request):
 @login_required(login_url='/accounts/login/')
 def upload_picture(request):
     current_user = request.user
+    user = Profile.objects.get(user=current_user)
     if request.method == 'POST':
         form = UploadImageModelForm(request.POST,request.FILES)
         if form.is_valid():
-            image = form.save(commit=False)
-            image.user = current_user
-            image.save()
+            post = form.save(commit=False)
+            post.user = user
+            post.save()
             return redirect('/',username=request.user)
     else:
         form = UploadImageModelForm()
