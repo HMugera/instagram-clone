@@ -29,12 +29,11 @@ def signup_view(request):
             name=form.cleaned_data['fullname']
             email=form.cleaned_data['email']
             
-            send_welcome_email(name,email)
+            # send_welcome_email(name,email)
 
             user = authenticate(username=username, password=password)
 
             login(request, user)
-
 
             return redirect('instagram:home')
     else:
